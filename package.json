@@ -1,5 +1,5 @@
 {
-  "name": "@practical/react-eventchannel",
+  "name": "@practicaljs/react-eventchannel",
   "version": "0.1.1",
   "type": "module",
   "description": "Simple react hooks for consuming and producing events with callbacks",
