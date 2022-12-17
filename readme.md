@@ -20,16 +20,12 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-React Event Channel is a simple library to create an event channel that is easy to use and allow for component to trigger events to other components.
+React Event Channel is a simple library to create an event channel that is easy to use and allows components to trigger events to other components.
 
 But not why just use the context or redux?
 
-While you can have a button that dispatches and event for another component to pick up the data do something and dispatch it back, sometimes all you need is a simple way to say HEY! I clicked this as do something without having to set up reducers, store or do any clean up. Raising events is a natural way to think about these type of behaviour.  Another reason is lets say you have a component with a safe button all wired, but the designer desides to move the save button to the header and make it a global save depending on the page that is rendered.  Now you would have to add reducers, button state, clean up, add your logic into an useEffect.... instead you can just listen to the click event from the button that is now outside of your component ( and without prop drilling ).
+While there is nothing wrong with using context or redux to trigger events, I just find it cleaner and more natural to raise an event without having to set up reducers, and actions or create contexts for a simple click.  For example, you have an implementation of a save button that calls a function onClick={submitInformation}, and now you want to move the button to the header to use as a global save button. With this package, you can trigger that event with minimal effort and still know that it works like any other event.
 
-
-Well that's just me I like simplicity.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
