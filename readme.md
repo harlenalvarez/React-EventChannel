@@ -60,7 +60,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 ### Installation
 
 ```npm
-npm i @practical/react-eventchannel
+npm i @practicaljs/react-eventchannel
 ```
 
 ### Usage
