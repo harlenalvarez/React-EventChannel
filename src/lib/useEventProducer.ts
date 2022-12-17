@@ -15,10 +15,10 @@ export const dispatchChannelEvent = (eventName: string) => {
 
 type EventChannelProducerProps = {
   eventName: string
-  onComplete?: (params?: any) => void
+  onComplete?: (params?: unknown) => void
 }
 
-export const useEventChannelProducer = ({
+export const useEventProducer = ({
   eventName,
   onComplete,
 }: EventChannelProducerProps) => {
@@ -44,7 +44,7 @@ export const useEventChannelProducer = ({
     }
   }, [])
 
-  const dispatch = (args?: any) => {
+  const dispatch = (...args: any[]) => {
     const payload = new EventPayload()
     payload.eventName = eventName
     payload.args = args

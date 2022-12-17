@@ -7,18 +7,19 @@ import {
 } from './channelEvent'
 
 type ChannelProps = {
-  [key: string]: (params?: any[]) => Promise<any> | any
+  [key: string]: (e: CustomEvent, params: any[]) => Promise<any> | any
 }
-export const useEventChannel = (triggers: ChannelProps) => {
+export const useEventSubscriber = (triggers: ChannelProps) => {
   const executeTrigger = (e: Event) => {
     if (
+      !e.defaultPrevented &&
       e instanceof CustomEvent &&
       e.detail instanceof EventPayload &&
       triggers[e.detail.eventName]
     ) {
-      const asyncProcess = async () => {
-        const result = await triggers[e.detail.eventName](e.detail.args)
-        const payload: EventCompletePayload = new EventCompletePayload()
+      const asyncProcess = async () => { 
+        const result = await triggers[e.detail.eventName](e, e.detail.args)
+        const payload = new EventCompletePayload()
         payload.eventName = e.detail.eventName
         if (result) {
           payload.result = result
