@@ -15,6 +15,15 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "url": "https://github.com/harlenalvarez/React-EventChannel",
+    "type": "url"
+  },
+  "homepage": "https://github.com/harlenalvarez/React-EventChannel",
+  "keywords": [
+    "react",
+    "events"
+  ],
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
