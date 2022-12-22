@@ -1,13 +1,13 @@
-import { useEventSubscriber } from "../lib"
-import { useState } from 'react'
-import { NestedComponent } from "./NestedComponent"
+import { useEventSubscriber } from "../lib";
+import { useState } from 'react';
+import { NestedComponent } from "./NestedComponent";
 
 const delay = (ms: number) => {
     return new Promise((res, _) => {
         setTimeout(() => { 
-            res('')
-        }, ms)
-    })
+            res('');
+        }, ms);
+    });
 }
 
 
@@ -17,8 +17,8 @@ export const EventListener = () => {
         doSomething: async () => {
             setMessage('Loading');
             await delay(3000);
-            setMessage('I am the parrent')
-            return 'Complete'
+            setMessage('I am the parrent');
+            return 'Complete';
         }
     })
     return (

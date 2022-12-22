@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 import {
   channelEventName,
   EventCompletePayload,
   EventPayload,
   generateCompleteEvent,
-} from './channelEvent'
+} from './channelEvent';
 
 type ChannelProps = {
   [key: string]: (e: CustomEvent, params: any[]) => Promise<any> | any
@@ -18,23 +18,23 @@ export const useEventSubscriber = (triggers: ChannelProps) => {
       triggers[e.detail.eventName]
     ) {
       const asyncProcess = async () => { 
-        const result = await triggers[e.detail.eventName](e, e.detail.args)
-        const payload = new EventCompletePayload()
-        payload.eventName = e.detail.eventName
+        const result = await triggers[e.detail.eventName](e, e.detail.args);
+        const payload = new EventCompletePayload();
+        payload.eventName = e.detail.eventName;
         if (result) {
-          payload.result = result
+          payload.result = result;
         }
-        const completeEvent = generateCompleteEvent(payload)
-        document.dispatchEvent(completeEvent)
+        const completeEvent = generateCompleteEvent(payload);
+        document.dispatchEvent(completeEvent);
       }
-      asyncProcess()
+      asyncProcess();
     }
   }
 
   useEffect(() => {
-    document.addEventListener(channelEventName, executeTrigger)
+    document.addEventListener(channelEventName, executeTrigger);
     return () => {
-      document.removeEventListener(channelEventName, executeTrigger)
+      document.removeEventListener(channelEventName, executeTrigger);
     }
   }, [])
 }

@@ -1,3 +1,3 @@
-export * from './useEventSubscriber'
-export * from './useEventProducer'
-export * from './channelEvent'
+export * from './useEventSubscriber';
+export * from './useEventProducer';
+export * from './channelEvent';

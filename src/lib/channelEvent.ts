@@ -1,5 +1,5 @@
-export const channelEventName = crypto.randomUUID()
-export const channelCompleteEventName = crypto.randomUUID()
+export const channelEventName = crypto.randomUUID();
+export const channelCompleteEventName = crypto.randomUUID();
 
 export class EventPayload {
   eventName = ''
