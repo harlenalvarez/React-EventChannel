@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   channelEventName,
   EventCompletePayload,
   EventPayload,
-  generateCompleteEvent,
+  generateCompleteEvent
 } from './channelEvent';
 
 type ChannelProps = {
   [key: string]: (e: CustomEvent, params: any[]) => Promise<any> | any
 }
-export const useEventSubscriber = (triggers: ChannelProps) => {
+export const useEventSubscriber = (triggers: ChannelProps, deps: React.DependencyList = []) => {
   const executeTrigger = (e: Event) => {
     if (
       !e.defaultPrevented &&
@@ -17,7 +17,7 @@ export const useEventSubscriber = (triggers: ChannelProps) => {
       e.detail instanceof EventPayload &&
       triggers[e.detail.eventName]
     ) {
-      const asyncProcess = async () => { 
+      const asyncProcess = async () => {
         const result = await triggers[e.detail.eventName](e, e.detail.args);
         const payload = new EventCompletePayload();
         payload.eventName = e.detail.eventName;
@@ -36,5 +36,5 @@ export const useEventSubscriber = (triggers: ChannelProps) => {
     return () => {
       document.removeEventListener(channelEventName, executeTrigger);
     }
-  }, [])
+  }, deps)
 }

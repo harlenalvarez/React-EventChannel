@@ -44,7 +44,7 @@ npm i @practicaljs/react-eventchannel
 From any component where you want to raise an event call the producer
 
 ```tsx
-const [ handleClick ] = useEventProduce({eventName:'doSomething'})
+const [ handleClick ] = useEventProduce({eventName:'doSomething'}, [])
 ```
 
 From any component that you want to recieve this event from call the subscriber and pass it in a call back with the same name as the event you're listening to.
@@ -52,7 +52,7 @@ From any component that you want to recieve this event from call the subscriber 
 The callback can return void, any or a Promise
 
 ```tsx
-useEventSubscriber({ doSomething: async () => {}})
+useEventSubscriber({ doSomething: async () => {}}, [])
 ```
 **TIP** If you are listening to multiple events you only need one subscriber ```useEventSubscriber({ event1: () => {}, event2: () => {} })```
 
@@ -61,19 +61,19 @@ But if you want to notify the producer you are done, lets say you add a spinner 
 ```tsx
 const [ handleClick ] = useEventProducer({eventName:'doSomething',onComplete: (response) => {
     // do what you need to do
-}})
+}}, [])
 ```
 
 And just make sure your subscriber returns a response
 
 ```tsx
-useEventSubscriber({ doSomething:  () => "I'm done"})
+useEventSubscriber({ doSomething:  () => "I'm done"}, [])
 ```
 
 ### Passing Arguments To Subscribers
 If you want to pass extra information with your event make sure to add it to your trigger function
 ```tsx
-const [ handleClick ] = useEventProduce({eventName:'doSomething'})
+const [ handleClick ] = useEventProduce({eventName:'doSomething'}, [])
 <button onClick={() => {handleClick('Ticket #', 300)}}>Set Ticket</button>
 ```
 
@@ -81,14 +81,14 @@ In subcriber
 ```tsx
 useEventSubscriber({
     doSomething: (_, args) => { console.log(args); } // ["Ticket #", 300]
-})
+}, [])
 ```
 
 ### Cancel Bubbling
 If you have multiple nested components listening to the event they will all recieve it, but you can stop the event from bubbling up from a child by preventing default.
 
 ```tsx
-useEventSubscriber({ doSomething:  (e) => {e.preventDefault()})
+useEventSubscriber({ doSomething:  (e) => {e.preventDefault()}, [])
 ```
 > You can't stop bubbling with siblings only to the parent
 

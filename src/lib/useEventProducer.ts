@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   channelCompleteEventName,
   EventCompletePayload,
   EventPayload,
-  generateEvent,
+  generateEvent
 } from './channelEvent';
 
 export const dispatchChannelEvent = (eventName: string) => {
@@ -21,7 +21,7 @@ type EventChannelProducerProps = {
 export const useEventProducer = ({
   eventName,
   onComplete,
-}: EventChannelProducerProps) => {
+}: EventChannelProducerProps, deps: React.DependencyList = []) => {
   const handleComplete = (e: Event) => {
     if (
       onComplete &&
@@ -42,7 +42,7 @@ export const useEventProducer = ({
         document.removeEventListener(channelCompleteEventName, handleComplete);
       }
     }
-  }, [])
+  }, deps)
 
   const dispatch = (...args: any[]) => {
     const payload = new EventPayload();
