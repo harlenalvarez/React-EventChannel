@@ -1,6 +1,6 @@
 {
   "name": "@practicaljs/react-eventchannel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "license": "MIT",
   "description": "Simple react hooks for consuming and producing events with callbacks",
@@ -11,6 +11,7 @@
   },
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/react-eventchannel.js",
       "require": "./dist/react-eventchannel.umd.cjs"
     }
